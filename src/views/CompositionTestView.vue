@@ -10,11 +10,14 @@
 export default {
   name: "CompositionTestView",
   setup() {
-    console.log("setup")
-    console.log(this)
-    let name = "Name from Seup"
+    console.log("setup") // Order setup->created->mounted
+    console.log(this) // Undefined
+
+    let name = "Name from Seup" // Variables are not reactive
     const age = 20
-    return {
+    const sex = "Male"
+
+    return { // Variables need to be returned in order to be used in template
       name,
       age
     }
