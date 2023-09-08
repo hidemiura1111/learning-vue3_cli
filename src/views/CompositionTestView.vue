@@ -3,10 +3,12 @@
     <h1>Composition Test</h1>
     <p>{{ name }}</p>
     <p>{{ age }}</p>
+    <p>{{ sex }}</p>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue'
 export default {
   name: "CompositionTestView",
   setup() {
@@ -15,11 +17,12 @@ export default {
 
     let name = "Name from Seup" // Variables are not reactive
     const age = 20
-    const sex = "Male"
+    const sex = ref("Male")
 
     return { // Variables need to be returned in order to be used in template
       name,
-      age
+      age,
+      sex
     }
   },
   data() {
@@ -31,6 +34,8 @@ export default {
   created() {
     console.log("created")
     console.log(this)
+    console.log("Variable from setup: ", this.name)
+    console.log("Variable from data: ", this.nameData)
   },
   mounted() {
     console.log("mounted")
