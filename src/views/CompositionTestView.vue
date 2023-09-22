@@ -6,11 +6,14 @@
     <p>{{ sex }}</p>
     <p>{{ book.title }}</p>
     <p>{{ book.author }}</p>
+    <p>{{ titleRef }}</p>
+    <p>{{ authorRef[1] }}</p>
+    <p>{{ authorRef[2] }}</p>
   </div>
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, toRefs } from 'vue'
 export default {
   name: "CompositionTestView",
   setup() {
@@ -19,17 +22,25 @@ export default {
 
     let name = "Name from Seup" // Variables are not reactive
     const age = 20
+
     const sex = ref("Male")
+
     const book = reactive({
       title: "Vue 3",
       author: ["Vue", "Vite"]
+    })
+
+    const bookToRefs = reactive({
+      titleRef: "Vue 3 to Ref",
+      authorRef: ["Vue to Ref", "Vite to Ref"]
     })
 
     return { // Variables need to be returned in order to be used in template
       name,
       age,
       sex,
-      book
+      book,
+      ...toRefs(bookToRefs) // Without toRefs, bookToRefs will be not a reactive
     }
   },
   data() {
