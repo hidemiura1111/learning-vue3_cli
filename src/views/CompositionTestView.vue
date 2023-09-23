@@ -9,6 +9,7 @@
     <p>{{ titleRef }}</p>
     <p>{{ authorRef[1] }}</p>
     <p>{{ authorRef[2] }}</p>
+    <button @click="btnClick">Switch Sex</button>
   </div>
 </template>
 
@@ -35,12 +36,19 @@ export default {
       authorRef: ["Vue to Ref", "Vite to Ref"]
     })
 
+    const btnClick = e => {
+      sex.value = "Female"
+      console.log(book.title)
+      console.log(e)
+    }
+
     return { // Variables need to be returned in order to be used in template
       name,
       age,
       sex,
       book,
-      ...toRefs(bookToRefs) // Without toRefs, bookToRefs will be not a reactive
+      ...toRefs(bookToRefs), // Without toRefs, bookToRefs will be not a reactive
+      btnClick,
     }
   },
   data() {
