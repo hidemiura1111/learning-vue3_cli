@@ -10,11 +10,14 @@
     <p>{{ authorRef[1] }}</p>
     <p>{{ authorRef[2] }}</p>
     <button @click="btnClick">Switch Sex</button>
+    <p>Computed Total Price: {{ totalPrice }}</p>
+    <label>Price: </label><input type="number" v-model="item.price" /><br/>
+    <label>Number: </label><input type="number" v-model="item.number" />
   </div>
 </template>
 
 <script>
-import { ref, reactive, toRefs } from 'vue'
+import { ref, reactive, toRefs, computed } from 'vue'
 export default {
   name: "CompositionTestView",
   setup() {
@@ -24,23 +27,32 @@ export default {
     let name = "Name from Seup" // Variables are not reactive
     const age = 20
 
-    const sex = ref("Male")
+    const sex = ref("Male") // refs
 
-    const book = reactive({
+    const book = reactive({ // reactive
       title: "Vue 3",
       author: ["Vue", "Vite"]
     })
 
-    const bookToRefs = reactive({
+    const bookToRefs = reactive({ // toRefs for reactrive with spread operator
       titleRef: "Vue 3 to Ref",
       authorRef: ["Vue to Ref", "Vite to Ref"]
     })
 
-    const btnClick = e => {
+    const btnClick = e => { // methods
       sex.value = "Female"
       console.log(book.title)
       console.log(e)
     }
+
+    const item = reactive({ // Variable for computed
+      price: 100,
+      number: 1
+    })
+
+    const totalPrice = computed(() => { // Computed
+      return item.price * item.number
+    })
 
     return { // Variables need to be returned in order to be used in template
       name,
@@ -49,6 +61,8 @@ export default {
       book,
       ...toRefs(bookToRefs), // Without toRefs, bookToRefs will be not a reactive
       btnClick,
+      totalPrice,
+      item
     }
   },
   data() {
