@@ -11,13 +11,20 @@
     <p>{{ authorRef[2] }}</p>
     <button @click="btnClick">Switch Sex</button>
     <p>Computed Total Price: {{ totalPrice }}</p>
-    <label>Price: </label><input type="number" v-model="item.price" /><br/>
-    <label>Number: </label><input type="number" v-model="item.number" />
+    <div>
+      <label>Price: </label><input type="number" v-model="item.price" />
+    </div>
+    <div>
+      <label>Number: </label><input type="number" v-model="item.number" />
+    </div>
+    <div>
+      <label>Search: </label><input type="text" v-model="search" />
+    </div>
   </div>
 </template>
 
 <script>
-import { ref, reactive, toRefs, computed } from 'vue'
+import { ref, reactive, toRefs, computed, watch } from 'vue'
 export default {
   name: "CompositionTestView",
   setup() {
@@ -39,7 +46,8 @@ export default {
       authorRef: ["Vue to Ref", "Vite to Ref"]
     })
 
-    const btnClick = e => { // methods
+    // methods from setup
+    const btnClick = e => {
       sex.value = "Female"
       console.log(book.title)
       console.log(e)
@@ -50,8 +58,18 @@ export default {
       number: 1
     })
 
-    const totalPrice = computed(() => { // Computed
+    // Computed from setup
+    const totalPrice = computed(() => {
       return item.price * item.number
+    })
+
+    const search = ref('')
+
+    // watch from setup
+    watch(search, (newValue, prevValue) => {
+      console.log(`Watch search: ${search.value}`)
+      console.log(`Prev: ${prevValue}`)
+      console.log(`New: ${newValue}`)
     })
 
     return { // Variables need to be returned in order to be used in template
@@ -62,7 +80,8 @@ export default {
       ...toRefs(bookToRefs), // Without toRefs, bookToRefs will be not a reactive
       btnClick,
       totalPrice,
-      item
+      item,
+      search,
     }
   },
   data() {
