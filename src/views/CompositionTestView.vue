@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { ref, reactive, toRefs, computed, watch, watchEffect } from 'vue'
+import { ref, reactive, toRefs, computed, watch, watchEffect, onMounted } from 'vue'
 export default {
   name: "CompositionTestView",
   setup() {
@@ -79,6 +79,11 @@ export default {
     // watchEffect
     watchEffect(() => {
       console.log(`WatchEffect: ${searchEffect.value}`)
+    })
+
+    // onMounted
+    onMounted(() => {
+      console.log("onMounted")
     })
 
     return { // Variables need to be returned in order to be used in template
