@@ -18,13 +18,16 @@
       <label>Number: </label><input type="number" v-model="item.number" />
     </div>
     <div>
-      <label>Search: </label><input type="text" v-model="search" />
+      <label>watch: </label><input type="text" v-model="search" />
+    </div>
+    <div>
+      <label>watchEffect: </label><input type="text" v-model="searchEffect" />
     </div>
   </div>
 </template>
 
 <script>
-import { ref, reactive, toRefs, computed, watch } from 'vue'
+import { ref, reactive, toRefs, computed, watch, watchEffect } from 'vue'
 export default {
   name: "CompositionTestView",
   setup() {
@@ -72,6 +75,12 @@ export default {
       console.log(`New: ${newValue}`)
     })
 
+    const searchEffect = ref('')
+    // watchEffect
+    watchEffect(() => {
+      console.log(`WatchEffect: ${searchEffect.value}`)
+    })
+
     return { // Variables need to be returned in order to be used in template
       name,
       age,
@@ -82,6 +91,7 @@ export default {
       totalPrice,
       item,
       search,
+      searchEffect,
     }
   },
   data() {
