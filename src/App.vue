@@ -7,12 +7,44 @@
     <router-link to="/composition-test">Composition Test</router-link> |
     <router-link to="/props-emit-test">Props Emit Test</router-link>
   </nav>
-  <router-view/>
+  <router-view
+    :setupBooks="setupBooks"
+    :dataBooks="dataBooks"
+  />
 </template>
 <script>
+import { reactive } from 'vue';
+
 export default {
+  setup() {
+    const setupBooks = reactive([
+      {
+        title: 'setup title 1',
+        author: 'setup author 1'
+      },
+      {
+        title: 'setup title 2',
+        author: 'setup author 2'
+      }
+    ])
+
+    return {
+      setupBooks
+    }
+  },
   data() {
-    return {}
+    return {
+      dataBooks: [
+        {
+          title: 'data title 1',
+          author: 'data author 1'
+        },
+        {
+          title: 'data title 2',
+          author: 'data author 2'
+        }
+      ]
+    }
   },
   provide() {
     return {
