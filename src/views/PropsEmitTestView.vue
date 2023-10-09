@@ -9,6 +9,7 @@
       </li>
     </ul>
     <div>{{ dataBooks }}</div>
+    <button @click="emitTest">Emit Test</button>
   </div>
 </template>
 
@@ -18,9 +19,17 @@ export default {
     setupBooks: Array,
     dataBooks: Array,
   },
-  setup(props) {
+  setup(props, context) { // seup(props, { emit })
     console.log(props.setupBooks)
     console.log(props.dataBooks)
+
+    const emitTest = () => {
+      context.emit('custom-event', 'Custom Event from Children')
+    }
+
+    return {
+      emitTest
+    }
   }
 }
 </script>

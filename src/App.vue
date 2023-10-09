@@ -10,6 +10,7 @@
   <router-view
     :setupBooks="setupBooks"
     :dataBooks="dataBooks"
+    @custom-event="parentEmitTest"
   />
 </template>
 <script>
@@ -44,6 +45,11 @@ export default {
           author: 'data author 2'
         }
       ]
+    }
+  },
+  methods: {
+    parentEmitTest(e) {
+      console.log(e)
     }
   },
   provide() {
