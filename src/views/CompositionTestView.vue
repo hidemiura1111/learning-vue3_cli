@@ -57,12 +57,15 @@ export default {
     }
 
     const item = reactive({ // Variable for computed
-      price: 100,
-      number: 1
+      price: null,
+      number: null
     })
 
     // Computed from setup
     const totalPrice = computed(() => {
+      if(!item.price || !item.number) {
+        return 'Please input price and number'
+      }
       return item.price * item.number
     })
 
