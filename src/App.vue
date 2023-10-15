@@ -6,7 +6,8 @@
     <router-link to="/teleport">Teleport</router-link> |
     <router-link to="/composition-test">Composition Test</router-link> |
     <router-link to="/props-emit-test">Props Emit Test</router-link> |
-    <router-link to="/composition-function-test">Composition Function Test</router-link>
+    <router-link to="/composition-function-test">Composition Function Test</router-link> |
+    <router-link to="/router-test">Router Test</router-link>
   </nav>
   <router-view
     :setupBooks="setupBooks"

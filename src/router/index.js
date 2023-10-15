@@ -4,7 +4,8 @@ import ChildrenView from '@/views/ChildrenView'
 import TeleportView from '@/views/TeleportView'
 import CompositionTestView from '@/views/CompositionTestView'
 import PropsEmitTestView from '@/views/PropsEmitTestView'
-import CompositionFunctionTestViewVue from '@/views/CompositionFunctionTestView.vue'
+import CompositionFunctionTestView from '@/views/CompositionFunctionTestView.vue'
+import RouterTestView from '@/views/RouterTestView.vue'
 
 const routes = [
   {
@@ -35,7 +36,12 @@ const routes = [
   {
     path: '/composition-function-test',
     name: 'CompositionFunctionTest',
-    component: CompositionFunctionTestViewVue
+    component: CompositionFunctionTestView
+  },
+  {
+    path: '/router-test',
+    name: 'RouterTest',
+    component: RouterTestView
   },
   {
     path: '/about',
