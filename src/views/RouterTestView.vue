@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute, useRouter, onBeforeRouteLeave } from 'vue-router';
 
 export default {
   setup() {
@@ -21,6 +21,11 @@ export default {
     const routeCheckPath = () => {
       console.log(route.path)
     }
+
+    onBeforeRouteLeave((to, from) => {
+      console.log(`to: ${to}`)
+      console.log(`from: ${from}`)
+    })
 
     return {
       goHome,
