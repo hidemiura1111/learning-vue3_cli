@@ -1,10 +1,30 @@
 <template>
   <div>Vuex Test</div>
+  <div>{{ count }}</div>
+  <button @click="increment">+</button>
 </template>
 
 <script>
-export default {
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 
+export default {
+  setup() {
+    const store = useStore()
+
+    const count = computed(() => {
+      return store.state.count
+    })
+
+    const increment = () => {
+      store.commit('increment')
+    }
+
+    return {
+      count,
+      increment
+    }
+  }
 }
 </script>
 
