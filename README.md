@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Link
+- Composition API: https://vuex.vuejs.org/ja/guide/composition-api.html
+- Composition API Example: https://github.com/vuejs/vuex/tree/main/examples/composition

@@ -7,12 +7,21 @@ import PropsEmitTestView from '@/views/PropsEmitTestView'
 import CompositionFunctionTestView from '@/views/CompositionFunctionTestView.vue'
 import RouterTestView from '@/views/RouterTestView.vue'
 import VuexTestView from '@/views/VuexTestView.vue'
+import CounterView from '@/views/CounterView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/about',
+    name: 'about',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
     path: '/children',
@@ -50,12 +59,9 @@ const routes = [
     component: VuexTestView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/counter',
+    name: 'Counter',
+    component: CounterView
   }
 ]
 
